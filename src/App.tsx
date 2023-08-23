@@ -1,94 +1,47 @@
 import { useEffect, useState } from 'react';
-import { Button } from 'antd';
 import { Audio } from './Audio';
+import { book } from './book';
 import './App.css';
 
-const getDate = (date: any) => {
-  const a = new Date(date);
-  const year = a.getFullYear();
-  const month = a.getMonth() + 1;
-  const day = a.getDate();
-  return `${year}-${month < 10 ? '0' + month : month}-${
-    day < 10 ? '0' + day : day
-  }`;
-};
+const READ_INDEX = "READ_INDEX"
 
 function App() {
-  const [date, setDate] = useState<number>();
-  const [readIndex, setReadIndex] = useState<number>();
-  const [data, setData] = useState<{ title: any[]; content: any[] }>();
+  const [readIndex, setReadIndex] = useState<number>(parseInt(localStorage.getItem(READ_INDEX) || "0"));
+  const [data, setData] = useState<string[]>([]);
 
   useEffect(() => {
-    const d = getDate(date).replace(/-/g, '');
-    fetch(`https://tech-news.deno.dev?d=${d}`).then(async (res) => {
-      if (!res) {
-        return;
-      }
-      const newData = (await res.json()) as any;
-      console.log(newData);
-      setData(newData);
-    });
-  }, [date]);
+    const data = book.split("\n").map(item => item.trim()).filter(item => item);
+    setData(data)
+  }, []);
 
   useEffect(() => {
-    if (!data || !data.title) {
-      return;
-    }
-    setReadIndex(0);
-    // let speechInstance = new window.SpeechSynthesisUtterance(
-    //   `${data.title[0]}。。。${data.content[0]}`
-    // );
-    // window.speechSynthesis.speak(speechInstance);
-  }, [data]);
+    localStorage.setItem(READ_INDEX, readIndex + "")
+  }, [readIndex]);
 
   return (
     <div style={{ paddingBottom: '60px', overflowY: 'auto', height: '100vh' }}>
-      <div>
-        <input
-          value={getDate(date)}
-          onChange={(evt) => setDate(new Date(evt.target.value).valueOf())}
-          type="date"
-        />
-        {new Array(20).fill(0).map((_, ind) => (
-          <Button
-            style={{ marginRight: '1vw' }}
-            type={
-              date === new Date().valueOf() - ind * 1000 * 3600 * 24
-                ? 'primary'
-                : 'default'
-            }
-            onClick={() =>
-              setDate(new Date().valueOf() - ind * 1000 * 3600 * 24)
-            }
-            key={ind}
-          >
-            {getDate(new Date().valueOf() - ind * 1000 * 3600 * 24)}
-          </Button>
-        ))}
-      </div>
-      {data &&
-        data.title.map((item, ind) => {
+      {data?.map((item, ind) => {
           return (
             <div
               onClick={() => setReadIndex(ind)}
               className={(ind === readIndex && 'active') || ''}
               key={ind}
             >
-              <h3>{item}</h3>
-              <p>{data.content[ind]}</p>
+              <h3>{ind}</h3>
+              <p>{item}</p>
             </div>
           );
         })}
       <div style={{ position: 'fixed', bottom: '0', zIndex: '1', width: "80vw" }}>
-        {date && data?.title && typeof readIndex === 'number' && (
+        {data?.length>0 && (
           <Audio
-            data={`${data?.title[readIndex]}。。。${data?.content[readIndex]}`}
+            data={`${data[readIndex]}`}
             onEnd={() => {
               setTimeout(() => {
-                if (readIndex < data?.title.length) {
+                if (readIndex < data?.length) {
                   setReadIndex(readIndex + 1);
                 } else {
-                  setDate(date - 1000 * 3600 * 24);
+                  // setDate(date - 1000 * 3600 * 24);
                 }
               }, 2000);
             }}
