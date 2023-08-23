@@ -3,6 +3,18 @@ import { Audio } from './Audio';
 import { book } from './book';
 import './App.css';
 
+function heightToTop(ele: HTMLElement) {
+  //ele为指定跳转到该位置的DOM节点
+  let root = document.body;
+  let height = 0;
+  do {
+    height += ele.offsetTop;
+    ele = ele.offsetParent;
+  } while (ele !== root);
+  console.log({ ele, height });
+  return height;
+}
+
 const READ_INDEX = 'READ_INDEX';
 
 function App() {
@@ -21,10 +33,18 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem(READ_INDEX, readIndex + '');
+
+    const el = document.getElementById(`data-${readIndex}`);
+    if (el) {
+      window.scrollTo({
+        top: heightToTop(el as HTMLElement),
+        behavior: 'smooth',
+      });
+    }
   }, [readIndex]);
 
   return (
-    <div style={{ paddingBottom: '60px', overflowY: 'auto', height: '100vh' }}>
+    <div style={{ paddingBottom: '60px' }}>
       {data?.map((item, ind) => {
         return (
           <div
@@ -32,7 +52,7 @@ function App() {
             className={(ind === readIndex && 'active') || ''}
             key={ind}
           >
-            <h3>{ind}</h3>
+            <h3 id={'data-' + ind}>{ind}</h3>
             <p>{item}</p>
           </div>
         );
@@ -46,11 +66,11 @@ function App() {
             right: '10px',
             backgroundColor: '#fff',
             padding: '16px',
-            textAlign: "center",
-            borderRadius: "50%",
-            border: "1px solid #333",
-            boxShadow: "0px 1px 0px 0px #ccc",
-            fontSize: "10px"
+            textAlign: 'center',
+            borderRadius: '50%',
+            border: '1px solid #333',
+            boxShadow: '0px 1px 0px 0px #ccc',
+            fontSize: '10px',
           }}
         >
           <div>
