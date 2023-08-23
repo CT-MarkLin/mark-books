@@ -7,11 +7,16 @@ function heightToTop(ele: HTMLElement) {
   //ele为指定跳转到该位置的DOM节点
   let root = document.body;
   let height = 0;
-  do {
-    height += ele.offsetTop;
-    ele = ele.offsetParent;
-  } while (ele !== root);
-  console.log({ ele, height });
+  let temp = ele as Element|null;
+  try {
+    do {
+      height += ele.offsetTop;
+      temp = (temp as HTMLElement)?.offsetParent;
+    } while (temp !== root);
+  } catch(err) {
+    console.error(err)
+  }
+  // console.log({ ele, height });
   return height;
 }
 
