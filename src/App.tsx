@@ -7,14 +7,14 @@ function heightToTop(ele: HTMLElement) {
   //ele为指定跳转到该位置的DOM节点
   let root = document.body;
   let height = 0;
-  let temp = ele as Element|null;
+  let temp = ele as Element | null;
   try {
     do {
       height += ele.offsetTop;
       temp = (temp as HTMLElement)?.offsetParent;
     } while (temp !== root);
-  } catch(err) {
-    console.error(err)
+  } catch (err) {
+    console.error(err);
   }
   // console.log({ ele, height });
   return height;
@@ -57,8 +57,15 @@ function App() {
             className={(ind === readIndex && 'active') || ''}
             key={ind}
           >
-            <h3 id={'data-' + ind}>{ind}</h3>
-            <p>{item}</p>
+            <p style={{ width: '80vw' }}>
+              <h4
+                style={{ display: 'inline-block', color: '#ccc', margin: 0 }}
+                id={'data-' + ind}
+              >
+                {ind}
+              </h4>{' '}
+              {item}
+            </p>
           </div>
         );
       })}
@@ -96,7 +103,7 @@ function App() {
             onEnd={(index) => {
               setTimeout(() => {
                 if (index < data?.length) {
-                  console.log({index, readIndex})
+                  console.log({ index, readIndex });
                   setReadIndex(index + 1);
                 } else {
                   // setDate(date - 1000 * 3600 * 24);
