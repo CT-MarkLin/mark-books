@@ -92,10 +92,12 @@ function App() {
         {data?.length > 0 && (
           <Audio
             data={`${data[readIndex]}`}
-            onEnd={() => {
+            index={readIndex}
+            onEnd={(index) => {
               setTimeout(() => {
-                if (readIndex < data?.length) {
-                  setReadIndex(readIndex + 1);
+                if (index < data?.length) {
+                  console.log({index, readIndex})
+                  setReadIndex(index + 1);
                 } else {
                   // setDate(date - 1000 * 3600 * 24);
                 }
