@@ -6,11 +6,24 @@ interface IAudio {
   onEnd: (index: number) => void;
 }
 
+const cache: any = {};
+
 export const Audio: FC<IAudio> = ({ data, index, onEnd }) => {
   const [snippets, setSnippets] = useState<string[]>([]);
   const [readIndex, setReadIndex] = useState<number>(0);
 
   const audioRef = useRef<HTMLMediaElement>(null);
+  useEffect(() => {
+    const audioObj = audioRef.current;
+    if (!audioObj) {
+      return;
+    }
+    clearInterval(cache.timer)
+    cache.timer = setInterval(() => {
+      audioObj.play();
+    }, 1000)
+    return clearInterval(cache.timer)
+  }, [audioRef])
   useEffect(() => {
     if (!data || !audioRef.current) {
       return;
