@@ -20,6 +20,9 @@ export const Audio: FC<IAudio> = ({ data, index, onEnd }) => {
     }
     clearInterval(cache.timer)
     cache.timer = setInterval(() => {
+      if (audioObj.ended) {
+        return
+      }
       audioObj.play();
     }, 1000)
     return () => clearInterval(cache.timer)
@@ -31,12 +34,8 @@ export const Audio: FC<IAudio> = ({ data, index, onEnd }) => {
     console.log({ snippets, readIndex });
     const url = `https://mark-tts.deno.dev/?text=${snippets[readIndex]}`;
     const audioObj = audioRef.current;
-    audioObj.pause();
+    // audioObj.pause();
     audioObj.src = url;
-    // audioObj.addEventListener('loadeddata', () => {
-    //   audioObj.play();
-    //   // duration 变量现在存放音频的播放时长（单位秒）
-    // });
   }, [audioRef, snippets, readIndex]);
 
   useEffect(() => {
