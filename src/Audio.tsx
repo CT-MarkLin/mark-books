@@ -22,7 +22,7 @@ export const Audio: FC<IAudio> = ({ data, index, onEnd }) => {
     cache.timer = setInterval(() => {
       audioObj.play();
     }, 1000)
-    return clearInterval(cache.timer)
+    return () => clearInterval(cache.timer)
   }, [audioRef])
   useEffect(() => {
     if (!data || !audioRef.current) {
