@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Audio } from './Audio';
-import { book } from './book';
+import { book } from './book2';
 import './App.css';
 
 function heightToTop(ele: HTMLElement) {
