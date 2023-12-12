@@ -48,6 +48,13 @@ function App() {
     }
   }, [readIndex]);
 
+  const setAudioRate = (rate = 1.5) => {
+    const vi = document.querySelector("audio")
+    if (vi) {
+      vi.playbackRate = rate
+    }
+  }
+
   return (
     <div style={{ paddingBottom: '60px' }}>
       {data?.map((item, ind) => {
@@ -93,6 +100,26 @@ function App() {
           </div>
         </div>
       )}
+
+        <div
+          style={{
+            position: 'fixed',
+            top: '40%',
+            zIndex: '1',
+            right: '10px',
+            padding: '16px',
+            textAlign: 'center',
+            fontSize: '10px',
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px"
+          }}
+        >
+        <button onClick={() => setAudioRate(1)}>1x</button>
+        <button onClick={() => setAudioRate(1.5)}>1.5x</button>
+        <button onClick={() =>  setAudioRate(1.75)}>1.75x</button>
+          <button onClick={() =>  setAudioRate(2)}>2x</button>
+        </div>
       <div
         style={{ position: 'fixed', bottom: '0', zIndex: '1', width: '80vw' }}
       >
