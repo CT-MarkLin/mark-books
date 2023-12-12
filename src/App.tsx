@@ -51,6 +51,7 @@ function App() {
   const setAudioRate = (rate = 1.5) => {
     const vi = document.querySelector("audio")
     if (vi) {
+      vi.defaultPlaybackRate = rate
       vi.playbackRate = rate
     }
   }
