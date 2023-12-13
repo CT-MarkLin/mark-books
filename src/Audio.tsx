@@ -32,7 +32,8 @@ export const Audio: FC<IAudio> = ({ data, index, onEnd }) => {
       return;
     }
     console.log({ snippets, readIndex });
-    const url = `https://mark-tts.deno.dev/?text=${snippets[readIndex]}`;
+    const domin = localStorage.getItem("tts_url") || "https://mark-tts.deno.dev"
+    const url = `${domin}/?text=${snippets[readIndex]}`;
     const audioObj = audioRef.current;
     // audioObj.pause();
     audioObj.src = url;

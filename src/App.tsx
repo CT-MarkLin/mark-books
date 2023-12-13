@@ -120,6 +120,8 @@ function App() {
         <button onClick={() => setAudioRate(1.5)}>1.5x</button>
         <button onClick={() =>  setAudioRate(1.75)}>1.75x</button>
           <button onClick={() =>  setAudioRate(2)}>2x</button>
+          <button onClick={() =>  {localStorage.setItem("tts_url", "https://hzc.pub")}}>inner</button>
+          <button onClick={() =>  {localStorage.setItem("tts_url", "https://mark-tts.deno.dev")}}>outer</button>
         </div>
       <div
         style={{ position: 'fixed', bottom: '0', zIndex: '1', width: '80vw' }}
