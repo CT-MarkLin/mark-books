@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Audio } from './Audio';
-import { book } from './book6';
+import { book } from './book5';
 import './App.css';
 
 function heightToTop(ele: HTMLElement) {
@@ -49,12 +49,12 @@ function App() {
   }, [readIndex]);
 
   const setAudioRate = (rate = 1.5) => {
-    const vi = document.querySelector("audio")
+    const vi = document.querySelector('audio');
     if (vi) {
-      vi.defaultPlaybackRate = rate
-      vi.playbackRate = rate
+      vi.defaultPlaybackRate = rate;
+      vi.playbackRate = rate;
     }
-  }
+  };
 
   return (
     <div style={{ paddingBottom: '60px' }}>
@@ -102,27 +102,39 @@ function App() {
         </div>
       )}
 
-        <div
-          style={{
-            position: 'fixed',
-            top: '40%',
-            zIndex: '1',
-            right: '10px',
-            padding: '16px',
-            textAlign: 'center',
-            fontSize: '10px',
-            display: "flex",
-            flexDirection: "column",
-            gap: "12px"
-          }}
-        >
+      <div
+        style={{
+          position: 'fixed',
+          top: '40%',
+          zIndex: '1',
+          right: '10px',
+          padding: '16px',
+          textAlign: 'center',
+          fontSize: '10px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '12px',
+        }}
+      >
         <button onClick={() => setAudioRate(1)}>1x</button>
         <button onClick={() => setAudioRate(1.5)}>1.5x</button>
-        <button onClick={() =>  setAudioRate(1.75)}>1.75x</button>
-          <button onClick={() =>  setAudioRate(2)}>2x</button>
-          <button onClick={() =>  {localStorage.setItem("tts_url", "https://hzc.pub")}}>inner</button>
-          <button onClick={() =>  {localStorage.setItem("tts_url", "https://mark-tts.deno.dev")}}>outer</button>
-        </div>
+        <button onClick={() => setAudioRate(1.75)}>1.75x</button>
+        <button onClick={() => setAudioRate(2)}>2x</button>
+        <button
+          onClick={() => {
+            localStorage.setItem('tts_url', 'https://hzc.pub');
+          }}
+        >
+          inner
+        </button>
+        <button
+          onClick={() => {
+            localStorage.setItem('tts_url', 'https://mark-tts.deno.dev');
+          }}
+        >
+          outer
+        </button>
+      </div>
       <div
         style={{ position: 'fixed', bottom: '0', zIndex: '1', width: '80vw' }}
       >
