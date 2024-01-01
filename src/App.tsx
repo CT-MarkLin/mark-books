@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Audio } from './Audio';
-import { book } from './book8';
+// import { book } from './book8';
 import './App.css';
 
 function heightToTop(ele: HTMLElement) {
@@ -22,9 +22,9 @@ function heightToTop(ele: HTMLElement) {
 
 const READ_INDEX = 'READ_INDEX';
 
-function App() {
+const App: FC<{book: string, id: string}> = ({book, id}) => {
   const [readIndex, setReadIndex] = useState<number>(
-    parseInt(localStorage.getItem(READ_INDEX) || '0')
+    parseInt(localStorage.getItem(id+READ_INDEX) || '0')
   );
   const [data, setData] = useState<string[]>([]);
 
@@ -37,7 +37,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(READ_INDEX, readIndex + '');
+    localStorage.setItem(id+READ_INDEX, readIndex + '');
 
     const el = document.getElementById(`data-${readIndex}`);
     if (el) {
