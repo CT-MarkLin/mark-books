@@ -3,7 +3,7 @@ import App from './App.tsx';
 
 const books = [
   { title: '美国反对美国', author: '王沪宁', filename: 'book1.txt' },
-  { title: '正义论', author: '约翰·罗尔斯', filename: 'book2.json' },
+  { title: '正义论', author: '约翰·罗尔斯', filename: 'book2.txt' },
   { title: '一九八四', author: '乔治·奥威尔', filename: 'book3.txt' },
   { title: '文明的冲突与世界秩序的重建', author: '萨缪尔·亨廷顿', filename: 'book4.txt' },
   { title: '菊与刀', author: '鲁思·本尼迪克特', filename: 'book5.txt' },
