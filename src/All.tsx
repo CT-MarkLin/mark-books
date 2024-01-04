@@ -10,8 +10,15 @@ const books = [
   { title: '乡土中国', author: '费孝通', filename: 'book6.txt' },
   { title: '国家为什么会失败——权力、富裕与贫困的根源', author: 'Daron Acemoglu and James A. Robinson', filename: 'book7.txt' },
   { title: '繁花', author: '金宇澄', filename: 'book8.txt' },
-  { title: '剑来_part1', author: '烽火戏诸侯', filename: 'book9.txt' },
-  { title: '剑来_part2', author: '烽火戏诸侯', filename: 'book10.txt' },
+  { title: '剑来1-2', author: '烽火戏诸侯', filename: 'book9.txt' },
+  { title: '剑来3-4', author: '烽火戏诸侯', filename: 'book11.txt' },
+  { title: '剑来5-6', author: '烽火戏诸侯', filename: 'book12.txt' },
+  { title: '剑来7-8', author: '烽火戏诸侯', filename: 'book13.txt' },
+  { title: '剑来9-10', author: '烽火戏诸侯', filename: 'book14.txt' },
+  { title: '剑来11-12', author: '烽火戏诸侯', filename: 'book15.txt' },
+  { title: '剑来13-14', author: '烽火戏诸侯', filename: 'book16.txt' },
+  { title: '剑来15-16', author: '烽火戏诸侯', filename: 'book17.txt' },
+  { title: '剑来17-18', author: '烽火戏诸侯', filename: 'book18.txt' },
 ];
 
 function All() {
