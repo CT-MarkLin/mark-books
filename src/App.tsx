@@ -120,19 +120,27 @@ const App: FC<{book: string, id: string}> = ({book, id}) => {
         <button onClick={() => setAudioRate(1.5)}>1.5x</button>
         <button onClick={() => setAudioRate(1.75)}>1.75x</button>
         <button onClick={() => setAudioRate(2)}>2x</button>
+        
+        <button
+          onClick={() => {
+            localStorage.setItem('tts_url', 'https://book.hzc.pub');
+          }}
+        >
+          Ali
+        </button>
         <button
           onClick={() => {
             localStorage.setItem('tts_url', 'https://hzc.pub');
           }}
         >
-          inner
+          Cloudflare
         </button>
         <button
           onClick={() => {
             localStorage.setItem('tts_url', 'https://mark-tts.deno.dev');
           }}
         >
-          outer
+          Deno
         </button>
       </div>
       <div
