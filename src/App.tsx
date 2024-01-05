@@ -34,6 +34,16 @@ const App: FC<{book: string, id: string}> = ({book, id}) => {
       .map((item) => item.trim())
       .filter((item) => item);
     setData(data);
+
+    setTimeout(()=>{
+      const el = document.getElementById(`data-${readIndex}`);
+      if (el) {
+        window.scrollTo({
+          top: heightToTop(el as HTMLElement),
+          behavior: 'smooth',
+        });
+      }
+    }, 2000)
   }, []);
 
   useEffect(() => {
