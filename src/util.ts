@@ -49,3 +49,26 @@
 //     return true;
 //   };
 // }
+export const cutSnippet = (data: string) => {
+  const maxLen = 360;
+  let result: string[] = [];
+  if (data.length <= maxLen) {
+    result = [data];
+  } else {
+    const paragraphs = data.split('\n');
+    const senteance = paragraphs.flatMap((item) => item.split('。'));
+    let temp = '';
+    for (let i = 0; i < senteance.length; i++) {
+      if (
+        (temp + senteance[i]).length >= maxLen ||
+        i === senteance.length - 1
+      ) {
+        result.push(temp);
+        temp = senteance[i];
+        continue;
+      }
+      temp += `。${senteance[i]}`;
+    }
+  }
+  return result;
+}

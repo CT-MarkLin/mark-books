@@ -22,9 +22,62 @@ function heightToTop(ele: HTMLElement) {
 
 const READ_INDEX = 'READ_INDEX';
 
-const App: FC<{book: string, id: string}> = ({book, id}) => {
+const Aside = () => {
+  const setAudioRate = (rate = 1.5) => {
+    const vi = document.querySelector('audio');
+    if (vi) {
+      vi.defaultPlaybackRate = rate;
+      vi.playbackRate = rate;
+    }
+  };
+  return (
+    <div
+      style={{
+        position: 'fixed',
+        top: '40%',
+        zIndex: '1',
+        right: '10px',
+        padding: '16px',
+        textAlign: 'center',
+        fontSize: '10px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '12px',
+      }}
+    >
+      <button onClick={() => setAudioRate(1)}>1x</button>
+      <button onClick={() => setAudioRate(1.5)}>1.5x</button>
+      <button onClick={() => setAudioRate(1.75)}>1.75x</button>
+      <button onClick={() => setAudioRate(2)}>2x</button>
+
+      <button
+        onClick={() => {
+          localStorage.setItem('tts_url', 'https://book.hzc.pub');
+        }}
+      >
+        Ali
+      </button>
+      <button
+        onClick={() => {
+          localStorage.setItem('tts_url', 'https://hzc.pub');
+        }}
+      >
+        Cloudflare
+      </button>
+      <button
+        onClick={() => {
+          localStorage.setItem('tts_url', 'https://mark-tts.deno.dev');
+        }}
+      >
+        Deno
+      </button>
+    </div>
+  );
+};
+
+const App: FC<{ book: string; id: string }> = ({ book, id }) => {
   const [readIndex, setReadIndex] = useState<number>(
-    parseInt(localStorage.getItem(id+READ_INDEX) || '0')
+    parseInt(localStorage.getItem(id + READ_INDEX) || '0')
   );
   const [data, setData] = useState<string[]>([]);
 
@@ -35,7 +88,7 @@ const App: FC<{book: string, id: string}> = ({book, id}) => {
       .filter((item) => item);
     setData(data);
 
-    setTimeout(()=>{
+    setTimeout(() => {
       const el = document.getElementById(`data-${readIndex}`);
       if (el) {
         window.scrollTo({
@@ -43,11 +96,11 @@ const App: FC<{book: string, id: string}> = ({book, id}) => {
           behavior: 'smooth',
         });
       }
-    }, 2000)
+    }, 2000);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(id+READ_INDEX, readIndex + '');
+    localStorage.setItem(id + READ_INDEX, readIndex + '');
 
     const el = document.getElementById(`data-${readIndex}`);
     if (el) {
@@ -57,14 +110,6 @@ const App: FC<{book: string, id: string}> = ({book, id}) => {
       });
     }
   }, [readIndex]);
-
-  const setAudioRate = (rate = 1.5) => {
-    const vi = document.querySelector('audio');
-    if (vi) {
-      vi.defaultPlaybackRate = rate;
-      vi.playbackRate = rate;
-    }
-  };
 
   return (
     <div style={{ paddingBottom: '60px' }}>
@@ -112,47 +157,8 @@ const App: FC<{book: string, id: string}> = ({book, id}) => {
         </div>
       )}
 
-      <div
-        style={{
-          position: 'fixed',
-          top: '40%',
-          zIndex: '1',
-          right: '10px',
-          padding: '16px',
-          textAlign: 'center',
-          fontSize: '10px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '12px',
-        }}
-      >
-        <button onClick={() => setAudioRate(1)}>1x</button>
-        <button onClick={() => setAudioRate(1.5)}>1.5x</button>
-        <button onClick={() => setAudioRate(1.75)}>1.75x</button>
-        <button onClick={() => setAudioRate(2)}>2x</button>
-        
-        <button
-          onClick={() => {
-            localStorage.setItem('tts_url', 'https://book.hzc.pub');
-          }}
-        >
-          Ali
-        </button>
-        <button
-          onClick={() => {
-            localStorage.setItem('tts_url', 'https://hzc.pub');
-          }}
-        >
-          Cloudflare
-        </button>
-        <button
-          onClick={() => {
-            localStorage.setItem('tts_url', 'https://mark-tts.deno.dev');
-          }}
-        >
-          Deno
-        </button>
-      </div>
+      <Aside />
+
       <div
         style={{ position: 'fixed', bottom: '0', zIndex: '1', width: '80vw' }}
       >
@@ -175,6 +181,6 @@ const App: FC<{book: string, id: string}> = ({book, id}) => {
       </div>
     </div>
   );
-}
+};
 
 export default App;
