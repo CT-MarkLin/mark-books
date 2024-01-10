@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { Audio } from './Audio';
-// import { book } from './book8';
+import { audioCache } from './cache';
+import { cutSnippet } from './util';
 import './App.css';
 
 function heightToTop(ele: HTMLElement) {
@@ -81,12 +82,21 @@ const App: FC<{ book: string; id: string }> = ({ book, id }) => {
   );
   const [data, setData] = useState<string[]>([]);
 
+  const addCache = (data: string[], readIndex: number) => {
+    for(let i = readIndex;i<Math.min(readIndex+8, data.length);i++) {
+      cutSnippet(data[i]).forEach((snippet, ind) => {
+        audioCache.pushData(snippet, `${i}-${ind}`);
+      })
+    }
+  }
+
   useEffect(() => {
     const data = book
       .split('\n')
       .map((item) => item.trim())
       .filter((item) => item);
     setData(data);
+    addCache(data, readIndex);
 
     setTimeout(() => {
       const el = document.getElementById(`data-${readIndex}`);
@@ -101,6 +111,7 @@ const App: FC<{ book: string; id: string }> = ({ book, id }) => {
 
   useEffect(() => {
     localStorage.setItem(id + READ_INDEX, readIndex + '');
+    addCache(data, readIndex);
 
     const el = document.getElementById(`data-${readIndex}`);
     if (el) {
@@ -116,7 +127,7 @@ const App: FC<{ book: string; id: string }> = ({ book, id }) => {
       {data?.map((item, ind) => {
         return (
           <div
-            onClick={() => setReadIndex(ind)}
+            onClick={() => {audioCache.clean(); setReadIndex(ind)}}
             className={(ind === readIndex && 'active') || ''}
             key={ind}
           >
@@ -174,7 +185,7 @@ const App: FC<{ book: string; id: string }> = ({ book, id }) => {
                 } else {
                   // setDate(date - 1000 * 3600 * 24);
                 }
-              }, 2000);
+              }, 800);
             }}
           />
         )}

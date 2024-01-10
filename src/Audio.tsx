@@ -1,4 +1,6 @@
 import { FC, useEffect, useRef, useState } from 'react';
+import { cutSnippet } from './util';
+import { audioCache } from './cache';
 
 interface IAudio {
   data: string;
@@ -28,43 +30,23 @@ export const Audio: FC<IAudio> = ({ data, index, onEnd }) => {
     return () => clearInterval(cache.timer)
   }, [audioRef])
   useEffect(() => {
-    if (!data || !audioRef.current) {
+    const audioObj = audioRef.current;
+    if (!data || !audioObj) {
       return;
     }
     console.log({ snippets, readIndex });
-    const domin = localStorage.getItem("tts_url") || "https://mark-tts.deno.dev"
-    const url = `${domin}/?text=${snippets[readIndex]}`;
-    const audioObj = audioRef.current;
+    audioCache.nextData(snippets[readIndex]).then(url => {
+      audioObj.src = url;
+    });
     // audioObj.pause();
-    audioObj.src = url;
   }, [audioRef, snippets, readIndex]);
 
   useEffect(() => {
-    const maxLen = 360;
     const audioObj = audioRef.current;
     audioObj?.pause();
-    if (data.length <= maxLen) {
-      setSnippets([data]);
-      setReadIndex(0);
-    } else {
-      const paragraphs = data.split('\n');
-      const senteance = paragraphs.flatMap((item) => item.split('。'));
-      let temp = '';
-      let result: string[] = [];
-      for (let i = 0; i < senteance.length; i++) {
-        if (
-          (temp + senteance[i]).length >= maxLen ||
-          i === senteance.length - 1
-        ) {
-          result.push(temp);
-          temp = senteance[i];
-          continue;
-        }
-        temp += `。${senteance[i]}`;
-      }
-      setSnippets(result);
-      setReadIndex(0);
-    }
+    const result = cutSnippet(data);
+    setSnippets(result);
+    setReadIndex(0);
   }, [data]);
 
   return (
