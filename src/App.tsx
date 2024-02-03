@@ -174,7 +174,7 @@ const App: FC<{ book: string; id: string }> = ({ book, id }) => {
                 } else {
                   // setDate(date - 1000 * 3600 * 24);
                 }
-              }, 2000);
+              }, 500);
             }}
           />
         )}
