@@ -35,7 +35,7 @@ const Aside = () => {
       style={{
         position: 'fixed',
         top: '40%',
-        zIndex: '1',
+        zIndex: '10',
         right: '10px',
         padding: '16px',
         textAlign: 'center',
@@ -43,6 +43,7 @@ const Aside = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '12px',
+        backgroundColor: "#666"
       }}
     >
       <button onClick={() => setAudioRate(1)}>1x</button>
@@ -139,7 +140,7 @@ const App: FC<{ book: string; id: string }> = ({ book, id }) => {
             top: '10px',
             zIndex: '1',
             right: '10px',
-            backgroundColor: '#fff',
+            // backgroundColor: '#fff',
             padding: '16px',
             textAlign: 'center',
             borderRadius: '50%',
