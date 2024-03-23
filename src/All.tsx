@@ -28,9 +28,10 @@ const books = [
   // { title: '剑来31-32', author: '烽火戏诸侯', filename: '/19-36/book26.txt' },
   // { title: '剑来33-34', author: '烽火戏诸侯', filename: '/19-36/book27.txt' },
   // { title: '剑来35', author: '烽火戏诸侯', filename: '/19-36/book28.txt' },
-  { title: '剑来36', author: '烽火戏诸侯', filename: '/37-/book29.txt' },
+  // { title: '剑来36', author: '烽火戏诸侯', filename: '/37-/book29.txt' },
   { title: '剑来37', author: '烽火戏诸侯', filename: '/37-/book30.txt' },
   { title: '剑来38', author: '烽火戏诸侯', filename: '/37-/book31.txt' },
+  { title: '剑来39', author: '烽火戏诸侯', filename: '/37-/book32.txt' },
 ];
 
 function All() {
