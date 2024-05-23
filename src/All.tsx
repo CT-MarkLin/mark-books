@@ -10,6 +10,8 @@ const books = [
   { title: '乡土中国', author: '费孝通', filename: 'book6.txt' },
   { title: '国家为什么会失败——权力、富裕与贫困的根源', author: 'Daron Acemoglu and James A. Robinson', filename: 'book7.txt' },
   { title: '繁花', author: '金宇澄', filename: 'book8.txt' },
+  { title: '毛选', author: '毛泽东', filename: 'book33.txt' },
+  { title: '毛选（大篇幅）', author: '毛泽东', filename: 'book34.txt' },
   // { title: '剑来1-2', author: '烽火戏诸侯', filename: 'book9.txt' },
   // { title: '剑来3-4', author: '烽火戏诸侯', filename: 'book11.txt' },
   // { title: '剑来5-6', author: '烽火戏诸侯', filename: 'book12.txt' },
@@ -29,9 +31,9 @@ const books = [
   // { title: '剑来33-34', author: '烽火戏诸侯', filename: '/19-36/book27.txt' },
   // { title: '剑来35', author: '烽火戏诸侯', filename: '/19-36/book28.txt' },
   // { title: '剑来36', author: '烽火戏诸侯', filename: '/37-/book29.txt' },
-  { title: '剑来37', author: '烽火戏诸侯', filename: '/37-/book30.txt' },
-  { title: '剑来38', author: '烽火戏诸侯', filename: '/37-/book31.txt' },
-  { title: '剑来39', author: '烽火戏诸侯', filename: '/37-/book32.txt' },
+  // { title: '剑来37', author: '烽火戏诸侯', filename: '/37-/book30.txt' },
+  // { title: '剑来38', author: '烽火戏诸侯', filename: '/37-/book31.txt' },
+  // { title: '剑来39', author: '烽火戏诸侯', filename: '/37-/book32.txt' },
 ];
 
 function All() {
