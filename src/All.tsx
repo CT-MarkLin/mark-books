@@ -19,6 +19,7 @@ const books = [
   },
   { title: '繁花', author: '金宇澄', filename: 'book8.txt' },
   { title: '毛选', author: '毛泽东', filename: 'book33.txt' },
+  { title: '穷查理宝典', author: '查理芒格', filename: 'poor.txt' },
   // { title: '毛选1（大篇幅）', author: '毛泽东', filename: 'mx_1.txt' },
   // { title: '毛选2（大篇幅）', author: '毛泽东', filename: 'mx_2.txt' },
   // { title: '毛选3（大篇幅）', author: '毛泽东', filename: 'mx_3.txt' },
