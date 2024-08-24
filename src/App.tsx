@@ -47,6 +47,7 @@ const Aside = () => {
       }}
     >
       <button onClick={() => setAudioRate(1)}>1x</button>
+      <button onClick={() => setAudioRate(1.25)}>1.25x</button>
       <button onClick={() => setAudioRate(1.5)}>1.5x</button>
       <button onClick={() => setAudioRate(1.75)}>1.75x</button>
       <button onClick={() => setAudioRate(2)}>2x</button>
@@ -71,6 +72,13 @@ const Aside = () => {
         }}
       >
         Deno
+      </button>
+      <button
+        onClick={() => {
+          localStorage.setItem('tts_url', 'https://edge-tts.deno.dev');
+        }}
+      >
+        Deno2
       </button>
     </div>
   );
