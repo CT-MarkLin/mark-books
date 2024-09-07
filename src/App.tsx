@@ -61,7 +61,7 @@ const Aside = () => {
       </button>
       <button
         onClick={() => {
-          localStorage.setItem('tts_url', 'https://hzc.pub');
+          localStorage.setItem('tts_url', 'https://audio.hzc.pub');
         }}
       >
         Cloudflare
