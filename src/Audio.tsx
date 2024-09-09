@@ -3,7 +3,7 @@ import { FC, useEffect, useRef, useState } from 'react';
 import {getDataUrl, default_max_len, splitParagraphs} from "./cacheServer"
 
 const getUrl = async (sText: string, pIndex: number, sIndex: number, bookId: string) => {
-  const dataUrl = getDataUrl(pIndex, sIndex, bookId);
+  const dataUrl = await getDataUrl(pIndex, sIndex, bookId);
   if (dataUrl) {
     return dataUrl;
   }
