@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { Audio } from './Audio';
 // import { book } from './book8';
 import './App.css';
+import {cacheWorker} from "./cacheServer"
 
 function heightToTop(ele: HTMLElement) {
   //ele为指定跳转到该位置的DOM节点
@@ -99,6 +100,9 @@ const App: FC<{ book: string; id: string }> = ({ book, id }) => {
 
     setTimeout(() => {
       const el = document.getElementById(`data-${readIndex}`);
+      if (readIndex) {
+        cacheWorker(data, readIndex, id)
+      }
       if (el) {
         window.scrollTo({
           top: heightToTop(el as HTMLElement),
@@ -111,6 +115,7 @@ const App: FC<{ book: string; id: string }> = ({ book, id }) => {
   useEffect(() => {
     localStorage.setItem(id + READ_INDEX, readIndex + '');
 
+    cacheWorker(data, readIndex, id)
     const el = document.getElementById(`data-${readIndex}`);
     if (el) {
       window.scrollTo({
@@ -175,6 +180,7 @@ const App: FC<{ book: string; id: string }> = ({ book, id }) => {
           <Audio
             data={`${data[readIndex]}`}
             index={readIndex}
+            bookId={id}
             onEnd={(index) => {
               setTimeout(() => {
                 if (index < data?.length) {

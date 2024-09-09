@@ -1,14 +1,26 @@
 import { FC, useEffect, useRef, useState } from 'react';
 
+import {getDataUrl, default_max_len, splitParagraphs} from "./cacheServer"
+
+const getUrl = async (sText: string, pIndex: number, sIndex: number, bookId: string) => {
+  const dataUrl = getDataUrl(pIndex, sIndex, bookId);
+  if (dataUrl) {
+    return dataUrl;
+  }
+  const domin = localStorage.getItem("tts_url") || "https://edge-tts.deno.dev"
+  return `${domin}/?text=${sText}`;
+}
+
 interface IAudio {
   data: string;
   index: number;
+  bookId: string;
   onEnd: (index: number) => void;
 }
 
 const cache: any = {};
 
-export const Audio: FC<IAudio> = ({ data, index, onEnd }) => {
+export const Audio: FC<IAudio> = ({ data, index, bookId, onEnd }) => {
   const [snippets, setSnippets] = useState<string[]>([]);
   const [readIndex, setReadIndex] = useState<number>(0);
 
@@ -32,39 +44,25 @@ export const Audio: FC<IAudio> = ({ data, index, onEnd }) => {
       return;
     }
     console.log({ snippets, readIndex });
-    const domin = localStorage.getItem("tts_url") || "https://edge-tts.deno.dev"
-    const url = `${domin}/?text=${snippets[readIndex]}`;
+    // const domin = localStorage.getItem("tts_url") || "https://edge-tts.deno.dev"
+    // const url = `${domin}/?text=${snippets[readIndex]}`;
     const audioObj = audioRef.current;
-    // audioObj.pause();
-    audioObj.src = url;
+    (async () => {
+      const url = await getUrl(snippets[readIndex], index, readIndex, bookId)
+      
+      // audioObj.pause();
+      audioObj.src = url;
+    })()
   }, [audioRef, snippets, readIndex]);
 
   useEffect(() => {
-    const maxLen = 360;
     const audioObj = audioRef.current;
     audioObj?.pause();
-    if (data.length <= maxLen) {
+    if (data.length <= default_max_len) {
       setSnippets([data]);
       setReadIndex(0);
     } else {
-      const paragraphs = data.split('\n');
-      const senteance = paragraphs.flatMap((item) => item.split(/[。？]/));
-      let temp = '';
-      let result: string[] = [];
-      for (let i = 0; i < senteance.length; i++) {
-        if (
-          (temp + senteance[i]).length >= maxLen ||
-          i === senteance.length - 1
-        ) {
-          if (i === senteance.length - 1) {
-            temp += `。${senteance[i]}`
-          }
-          result.push(temp);
-          temp = senteance[i];
-          continue;
-        }
-        temp += `。${senteance[i]}`;
-      }
+      const result = splitParagraphs(data)
       setSnippets(result);
       setReadIndex(0);
     }
