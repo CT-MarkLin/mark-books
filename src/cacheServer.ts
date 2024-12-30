@@ -8,6 +8,8 @@ const tasks: Array<() => Promise<boolean>> = [];
 
 export const default_max_len = 360;
 
+const CACHE_LEN = 8;
+
 export function splitParagraphs(data: string, maxLen = default_max_len) {
   const paragraphs = data.split("\n");
   const senteance = paragraphs.flatMap((item) => item.split(/[。？]/));
@@ -34,7 +36,7 @@ async function fetchAudio(text: string, id: string, bookId: string) {
   const waitFetchLine = parseInt(id);
   const diffLine = waitFetchLine - latestReadLine;
   const cacheKeys = await keys(cacheStore);
-  if (diffLine < 0 || diffLine > 4 || cacheKeys.includes(`${id}-${bookId}`)) {
+  if (diffLine < 0 || diffLine > CACHE_LEN || cacheKeys.includes(`${id}-${bookId}`)) {
     return false;
   }
   const domin = localStorage.getItem("tts_url") || "https://edge-tts.deno.dev";

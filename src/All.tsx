@@ -75,6 +75,16 @@ const books = [
     author: '司汤达',
     filename: '/hongyuhei.txt',
   },
+  {
+    title: '查拉图斯特拉如是说',
+    author: '尼采',
+    filename: '/chalatusitelarushishuo.txt',
+  },
+  {
+    title: '太阳照常升起',
+    author: '司汤达',
+    filename: '/taiyangzhaochangshengqi.txt',
+  },
   // { title: 'test', author: 'test', filename: 'test.txt' },
   // { title: '毛选1（大篇幅）', author: '毛泽东', filename: 'mx_1.txt' },
   // { title: '毛选2（大篇幅）', author: '毛泽东', filename: 'mx_2.txt' },
