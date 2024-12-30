@@ -69,7 +69,7 @@ export async function cacheWorker(
   data: string[],
   index: number,
   bookId: string,
-  cacheNum = 4
+  cacheNum = CACHE_LEN
 ) {
   const cacheKeys = await keys(cacheStore);
   const cacheNumArr = new Array(cacheNum).fill(0).map((_, ind) => ind); // [0,1,2,3]
