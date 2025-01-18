@@ -110,6 +110,11 @@ const books = [
     author: '大仲马',
     filename: '/2025/基督山伯爵.txt',
   },
+  {
+    title: '林家铺子',
+    author: '茅盾',
+    filename: '/2025/林家铺子.txt',
+  },
   // { title: 'test', author: 'test', filename: 'test.txt' },
   // { title: '毛选1（大篇幅）', author: '毛泽东', filename: 'mx_1.txt' },
   // { title: '毛选2（大篇幅）', author: '毛泽东', filename: 'mx_2.txt' },
