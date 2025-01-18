@@ -82,8 +82,33 @@ const books = [
   },
   {
     title: '太阳照常升起',
-    author: '司汤达',
+    author: '海明威',
     filename: '/taiyangzhaochangshengqi.txt',
+  },
+  {
+    title: '人口原理',
+    author: '马尔萨斯',
+    filename: '/2025/人口原理.txt',
+  },
+  {
+    title: '大众的反叛',
+    author: '奥尔特加·加塞特',
+    filename: '/2025/大众的反叛.txt',
+  },
+  {
+    title: '乌合之众',
+    author: '古斯塔夫•勒庞',
+    filename: '/2025/乌合之众.txt',
+  },
+  {
+    title: '王子与贫儿',
+    author: '马克吐温',
+    filename: '/2025/王子与贫儿.txt',
+  },
+  {
+    title: '基督山伯爵',
+    author: '大仲马',
+    filename: '/2025/基督山伯爵.txt',
   },
   // { title: 'test', author: 'test', filename: 'test.txt' },
   // { title: '毛选1（大篇幅）', author: '毛泽东', filename: 'mx_1.txt' },
