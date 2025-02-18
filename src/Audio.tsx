@@ -36,7 +36,7 @@ export const Audio: FC<IAudio> = ({ data, index, bookId, onEnd }) => {
         return
       }
       audioObj.play();
-    }, 1000)
+    }, 200)
     return () => clearInterval(cache.timer)
   }, [audioRef])
   useEffect(() => {
