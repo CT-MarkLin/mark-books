@@ -41,7 +41,7 @@ async function fetchAudio(text: string, id: string, bookId: string) {
     return false;
   }
   const domin = localStorage.getItem("tts_url") || "https://edge-tts.deno.dev";
-  const url = `${domin}/?text=${Tesla_prefix_text + text}`;
+  const url = `${domin}/?text=${Tesla_prefix_text + text.replace(/&/g, " and ").replace(/=/g, "等于")}`;
   try {
     const result = await (await fetch(url)).blob();
     set(`${id}-${bookId}`, result, cacheStore);

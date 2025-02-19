@@ -9,7 +9,7 @@ const getUrl = async (sText: string, pIndex: number, sIndex: number, bookId: str
     return dataUrl;
   }
   const domin = localStorage.getItem("tts_url") || "https://edge-tts.deno.dev"
-  return `${domin}/?text=${Tesla_prefix_text + sText}`;
+  return `${domin}/?text=${Tesla_prefix_text + sText.replace(/&/g, " and ").replace(/=/g, "等于")}`;
 }
 
 interface IAudio {
