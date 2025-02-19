@@ -1,4 +1,5 @@
 import { createStore, get, set, keys, del } from "idb-keyval";
+import { Tesla_prefix_text } from "./util";
 
 const READ_INDEX = "READ_INDEX";
 
@@ -40,7 +41,7 @@ async function fetchAudio(text: string, id: string, bookId: string) {
     return false;
   }
   const domin = localStorage.getItem("tts_url") || "https://edge-tts.deno.dev";
-  const url = `${domin}/?text=${text}`;
+  const url = `${domin}/?text=${Tesla_prefix_text + text}`;
   try {
     const result = await (await fetch(url)).blob();
     set(`${id}-${bookId}`, result, cacheStore);

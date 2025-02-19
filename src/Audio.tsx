@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef, useState } from 'react';
 
 import {getDataUrl, default_max_len, splitParagraphs} from "./cacheServer"
+import { Tesla_prefix_text } from './util';
 
 const getUrl = async (sText: string, pIndex: number, sIndex: number, bookId: string) => {
   const dataUrl = await getDataUrl(pIndex, sIndex, bookId);
@@ -8,7 +9,7 @@ const getUrl = async (sText: string, pIndex: number, sIndex: number, bookId: str
     return dataUrl;
   }
   const domin = localStorage.getItem("tts_url") || "https://edge-tts.deno.dev"
-  return `${domin}/?text=${sText}`;
+  return `${domin}/?text=${Tesla_prefix_text + sText}`;
 }
 
 interface IAudio {
