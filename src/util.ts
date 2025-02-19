@@ -73,4 +73,4 @@ export const cutSnippet = (data: string) => {
   return result;
 }
 
-export const Tesla_prefix_text = "嗯嗯"
+export const Tesla_prefix_text = " "
