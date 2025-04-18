@@ -125,6 +125,11 @@ const books = [
     author: '-',
     filename: '/2025/radar-202410.txt',
   },
+  {
+    title: 'radar-all',
+    author: '-',
+    filename: '/2025/radar.txt',
+  },
   // { title: 'test', author: 'test', filename: 'test.txt' },
   // { title: '毛选1（大篇幅）', author: '毛泽东', filename: 'mx_1.txt' },
   // { title: '毛选2（大篇幅）', author: '毛泽东', filename: 'mx_2.txt' },
