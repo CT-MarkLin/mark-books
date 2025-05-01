@@ -62,21 +62,21 @@ const Aside = () => {
       </button>
       <button
         onClick={() => {
-          localStorage.setItem('tts_url', 'https://audio.hzc.pub');
+          localStorage.setItem('tts_url', 'https://fetch.hzc.pub/?url=https://edge-tts.deno.dev');
         }}
       >
         Cloudflare
       </button>
       <button
         onClick={() => {
-          localStorage.setItem('tts_url', 'https://mark-tts.deno.dev');
+          localStorage.setItem('tts_url', 'https://fetch.hzc.pub/?url=https://deno-tts.deno.dev');
         }}
       >
         Deno
       </button>
       <button
         onClick={() => {
-          localStorage.setItem('tts_url', 'https://edge-tts.deno.dev');
+          localStorage.setItem('tts_url', 'https://fetch.hzc.pub/?https://edge-tts.deno.dev');
         }}
       >
         Deno2
