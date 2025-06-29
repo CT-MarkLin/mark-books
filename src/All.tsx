@@ -116,15 +116,20 @@ const books = [
     filename: '/2025/林家铺子.txt',
   },
   {
+    title: '置身事内',
+    author: '兰小欢',
+    filename: '/2025/置身事内.txt',
+  },
+  {
     title: 'radar-202504',
     author: '-',
     filename: '/2025/radar-202504.txt',
   },
-  {
-    title: 'radar-202410',
-    author: '-',
-    filename: '/2025/radar-202410.txt',
-  },
+  // {
+  //   title: 'radar-202410',
+  //   author: '-',
+  //   filename: '/2025/radar-202410.txt',
+  // },
   {
     title: 'radar-all',
     author: '-',
