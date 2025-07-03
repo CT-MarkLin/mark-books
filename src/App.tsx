@@ -58,11 +58,11 @@ const Aside = () => {
           localStorage.setItem('tts_url', 'https://book.hzc.pub');
         }}
       >
-        Ali
+        supabase
       </button>
       <button
         onClick={() => {
-          localStorage.setItem('tts_url', 'https://fetch.hzc.pub/?url=https://edge-tts.deno.dev');
+          localStorage.setItem('tts_url', 'https://supabase.hzc.pub/functions/v1/edge-tts');
         }}
       >
         Cloudflare
