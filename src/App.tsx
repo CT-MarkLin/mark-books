@@ -55,31 +55,10 @@ const Aside = () => {
 
       <button
         onClick={() => {
-          localStorage.setItem('tts_url', 'https://book.hzc.pub');
+          localStorage.setItem('tts_url', '');
         }}
       >
         supabase
-      </button>
-      <button
-        onClick={() => {
-          localStorage.setItem('tts_url', 'https://supabase.hzc.pub/functions/v1/edge-tts');
-        }}
-      >
-        Cloudflare
-      </button>
-      <button
-        onClick={() => {
-          localStorage.setItem('tts_url', 'https://fetch.hzc.pub/?url=https://deno-tts.deno.dev');
-        }}
-      >
-        Deno
-      </button>
-      <button
-        onClick={() => {
-          localStorage.setItem('tts_url', 'https://fetch.hzc.pub/?https://edge-tts.deno.dev');
-        }}
-      >
-        Deno2
       </button>
     </div>
   );

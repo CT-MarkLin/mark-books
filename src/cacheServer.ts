@@ -1,5 +1,6 @@
 import { createStore, get, set, keys, del } from "idb-keyval";
 import { Tesla_prefix_text } from "./util";
+import { ttsApi } from "./tts"
 
 const READ_INDEX = "READ_INDEX";
 
@@ -40,10 +41,10 @@ async function fetchAudio(text: string, id: string, bookId: string) {
   if (diffLine < 0 || diffLine > CACHE_LEN || cacheKeys.includes(`${id}-${bookId}`)) {
     return false;
   }
-  const domin = localStorage.getItem("tts_url") || "https://edge-tts.deno.dev";
-  const url = `${domin}/?text=${Tesla_prefix_text + text.replace(/&/g, " and ").replace(/=/g, "等于")}`;
+  // const domin = localStorage.getItem("tts_url") || "https://edge-tts.deno.dev";
+  // const url = `${domin}/?text=${Tesla_prefix_text + text.replace(/&/g, " and ").replace(/=/g, "等于")}`;
   try {
-    const result = await (await fetch(url)).blob();
+    const result = await ttsApi(`${Tesla_prefix_text + text.replace(/&/g, " and ").replace(/=/g, "等于")}`);
     set(`${id}-${bookId}`, result, cacheStore);
     return true;
   } catch (err) {

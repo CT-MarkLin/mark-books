@@ -2,14 +2,17 @@ import { FC, useEffect, useRef, useState } from 'react';
 
 import {getDataUrl, default_max_len, splitParagraphs} from "./cacheServer"
 import { Tesla_prefix_text } from './util';
+import {ttsApi} from './tts'
 
 const getUrl = async (sText: string, pIndex: number, sIndex: number, bookId: string) => {
   const dataUrl = await getDataUrl(pIndex, sIndex, bookId);
   if (dataUrl) {
     return dataUrl;
   }
-  const domin = localStorage.getItem("tts_url") || "https://edge-tts.deno.dev"
-  return `${domin}/?text=${Tesla_prefix_text + sText.replace(/&/g, " and ").replace(/=/g, "等于")}`;
+  // const domin = localStorage.getItem("tts_url") || "https://edge-tts.deno.dev"
+  const audioBlob = await ttsApi(`${Tesla_prefix_text + sText.replace(/&/g, " and ").replace(/=/g, "等于")}`)
+  const audioUrl = URL.createObjectURL(audioBlob);
+  return audioUrl;
 }
 
 interface IAudio {
